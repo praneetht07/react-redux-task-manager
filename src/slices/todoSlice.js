@@ -5,6 +5,8 @@ const getInitialToDos = () => {
   if (localToDoList) {
     return JSON.parse(localToDoList);
   }
+  window.localStorage.setItem("todoList", JSON.stringify([]));
+  return [];
 };
 
 const initialValue = {

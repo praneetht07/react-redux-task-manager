@@ -1,13 +1,32 @@
 import React, { useState } from "react";
 import styles from "../styles/modules/modal.module.scss";
 import { MdOutlineClose } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import Button from "./Button";
+import { v4 as uuid } from "uuid";
+import { addToDo } from "../slices/todoSlice";
+import toast from "react-hot-toast";
 
 function ToDoModal({ isModalOpen, setIsModalOpen }) {
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("incomplete");
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (title && status) {
+      dispatch(
+        addToDo({
+          id: uuid(),
+          title,
+          status,
+          time: new Date().toLocaleString(),
+        })
+      );
+      toast.success("Task added successfully!");
+      setIsModalOpen(false);
+    } else {
+      toast.error("Please enter title");
+    }
   };
   return (
     isModalOpen && (
@@ -41,8 +60,8 @@ function ToDoModal({ isModalOpen, setIsModalOpen }) {
                 value={status}
                 onChange={(e) => setStatus(e.target.value)}
               >
-                <option value="Incomplete">Incomplete</option>
-                <option value="Complete">Complete</option>
+                <option value="incomplete">Incomplete</option>
+                <option value="complete">Complete</option>
               </select>
             </label>
             <div className={styles.buttonContainer}>
