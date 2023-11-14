@@ -50,11 +50,10 @@
 	word-break: break-all;
 	font-weight: 500;
 	font-size: 1.4rem;
-	color: var(--black-2);
+	color: var(--red);
 
 	&--completed {
-		text-decoration: line-through;
-		opacity: 0.7;
+		color: var(--green);
 	}
 }
 .time {
