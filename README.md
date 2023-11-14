@@ -1,6 +1,6 @@
 # Project Title
 
-Task manager
+Task Manager
 
 ## Demo link:
 
