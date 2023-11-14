@@ -35,7 +35,7 @@ I adopted SCSS for styling the app
 
 ## Status
 
-Task manager is compeleted.
+Task Manager App is compeleted.
 
 ## Credits
 
