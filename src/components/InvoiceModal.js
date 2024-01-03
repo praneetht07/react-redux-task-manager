@@ -4,8 +4,8 @@ import { MdOutlineClose } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
 import toast from "react-hot-toast";
-import { format } from "date-fns";
-import { addTodo, updateTodo } from "../slices/todoSlice";
+// import { format } from "date-fns";
+import { addInvoice, updateInvoice } from "../slices/invoiceSlice";
 import styles from "../styles/modules/modal.module.scss";
 import Button from "./Button";
 
@@ -30,43 +30,46 @@ const dropIn = {
   },
 };
 
-function TodoModal({ type, modalOpen, setModalOpen, todo }) {
+function InvoiceModal({ type, modalOpen, setModalOpen, invoice }) {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [status, setStatus] = useState("pending");
+  const [customerName, setTitle] = useState("");
+  const [amount, setAmount] = useState();
 
   useEffect(() => {
-    if (type === "update" && todo) {
-      setTitle(todo.title);
-      setStatus(todo.status);
+    if (type === "update" && invoice) {
+      setTitle(invoice.customerName);
+      setAmount(invoice.amount);
     } else {
       setTitle("");
-      setStatus("pending");
+      setAmount();
     }
-  }, [type, todo, modalOpen]);
+  }, [type, invoice, modalOpen]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title === "") {
-      toast.error("Please enter a title");
+    if (customerName === "") {
+      toast.error("Please enter a customer name");
       return;
     }
-    if (title && status) {
+    if (customerName && amount) {
       if (type === "add") {
         dispatch(
-          addTodo({
+          addInvoice({
             id: uuid(),
-            title,
-            status,
-            time: format(new Date(), "p, MM/dd/yyyy"),
+            customerName,
+            amount,
+            time: new Date().toJSON().slice(0, 10),
           })
         );
-        toast.success("Task added successfully");
+        toast.success("Invoice added successfully");
       }
       if (type === "update") {
-        if (todo.title !== title || todo.status !== status) {
-          dispatch(updateTodo({ ...todo, title, status }));
-          toast.success("Task Updated successfully");
+        if (
+          invoice.customerName !== customerName ||
+          invoice.amount !== amount
+        ) {
+          dispatch(updateInvoice({ ...invoice, customerName, amount }));
+          toast.success("Invoice updated successfully");
         } else {
           toast.error("No changes made");
           return;
@@ -105,34 +108,31 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
             >
               <MdOutlineClose />
             </motion.div>
-
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <h1 className={styles.formTitle}>
-                {type === "add" ? "Add" : "Update"} TODO
+                {type === "add" ? "Add" : "Update"} Invoice
               </h1>
-              <label htmlFor="title">
-                Title
+              <label htmlFor="customerName">
+                Cutomer Name
                 <input
                   type="text"
-                  id="title"
-                  value={title}
+                  id="customerName"
+                  value={customerName}
                   onChange={(e) => setTitle(e.target.value)}
                 />
               </label>
-              <label htmlFor="type">
-                Status
-                <select
-                  id="type"
-                  value={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                >
-                  <option value="pending">Pending</option>
-                  <option value="complete">Completed</option>
-                </select>
+              <label htmlFor="amount">
+                Amount
+                <input
+                  type="number"
+                  id="amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
               </label>
               <div className={styles.buttonContainer}>
                 <Button type="submit" variant="primary">
-                  {type === "add" ? "Add Task" : "Update Task"}
+                  {type === "add" ? "Add Invoice" : "Update Invoice"}
                 </Button>
                 <Button variant="secondary" onClick={() => setModalOpen(false)}>
                   Cancel
@@ -146,4 +146,4 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
   );
 }
 
-export default TodoModal;
+export default InvoiceModal;

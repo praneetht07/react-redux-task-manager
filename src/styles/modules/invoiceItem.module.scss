@@ -12,7 +12,7 @@
 		margin-bottom: 0;
 	}
 }
-.todoDetails {
+.invoiceDetails {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -43,27 +43,61 @@
 }
 .texts {
 	display: flex;
-	flex-direction: column;
 	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
 }
-.todoText {
+.invoiceText {
 	word-break: break-all;
 	font-weight: 500;
 	font-size: 1.4rem;
-	color: var(--red);
-
-	&--completed {
-		color: var(--green);
+	color: var(--black);
+	width: 175px;
+	@include smallDeviceSize {
+		width: auto;
+	}
+}
+.invoiceId {
+	font-size: 12px;
+	font-size: 1.2rem;
+	width: 300px;
+	@include smallDeviceSize {
+		display: none;
+	}
+}
+.invoiceAmount {
+	font-size: 14px;
+	font-weight: 500;
+	font-size: 1.2rem;
+	width: 75px;
+	display: flex;
+	justify-content: flex-end;
+	@include smallDeviceSize {
+		width: auto;
 	}
 }
 .time {
 	display: block;
 	font-size: 1.2rem;
 	font-weight: 300;
-	margin-top: -0.2rem;
+	font-size: 1.2rem;
 	color: var(--black-2);
 }
-.todoActions {
+
+.invoiceStatus {
+	font-size: 14px;
+	font-weight: 500;
+	font-size: 1.2rem;
+	width: 175px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	@include smallDeviceSize {
+		width: auto;
+	}
+}
+.invoiceActions {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -82,5 +116,13 @@
 	transition: 0.3s ease background-color;
 	&:hover {
 		background-color: var(--gray-2);
+	}
+}
+.content__wrapper {
+	background-color: var(--bg-2);
+	padding: 2rem;
+	border-radius: 12px;
+	@include smallDeviceSize {
+		padding: 1.5rem;
 	}
 }

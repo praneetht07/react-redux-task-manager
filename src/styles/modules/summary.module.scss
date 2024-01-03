@@ -1,0 +1,67 @@
+@import '../_mixins.scss';
+
+.outerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerContainer {
+    background-color: var(--bg-2);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: fit-content;
+}
+
+.summaryDetails {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: var(--white);
+    border-radius: 4px;
+}
+
+.text {
+	font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--black-2);
+}
+
+.amount {
+	font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--black-2);
+}
+
+.amountGreen {
+    @extend .amount;
+    color: green;
+}
+
+.amountYellow {
+    @extend .amount;
+    color: yellow;
+
+}
+
+.amountRed {
+    @extend .amount;
+    color: red;
+
+}
+
+.invoiceCount {
+    @extend .amount;
+}
+
+.invoiceDetails {
+    @extend .summaryDetails;
+    border-top: 1px solid var(--black-2);
+}
+
+
+

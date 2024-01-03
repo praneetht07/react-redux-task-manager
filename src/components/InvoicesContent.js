@@ -1,8 +1,9 @@
-import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
+
 import styles from "../styles/modules/app.module.scss";
-import TodoItem from "./ToDoItem";
+import InvoiceItem from "./InvoiceItem";
 
 const container = {
   hidden: { opacity: 1 },
@@ -22,20 +23,11 @@ const child = {
   },
 };
 
-function AppContent() {
-  const todoList = useSelector((state) => state.todo.todoList);
-  const filterStatus = useSelector((state) => state.todo.filterStatus);
+function InvoicesContent() {
+  const invoiceList = useSelector((state) => state.invoice.invoiceList);
 
-  const sortedTodoList = [...todoList];
-  sortedTodoList.sort((a, b) => new Date(b.time) - new Date(a.time));
-  sortedTodoList.sort((a, b) => (a.status > b.status ? 1 : -1));
-
-  const filteredTodoList = sortedTodoList.filter((item) => {
-    if (filterStatus === "all") {
-      return true;
-    }
-    return item.status === filterStatus;
-  });
+  const sortedInvoiceList = [...invoiceList];
+  sortedInvoiceList.sort((a, b) => new Date(b.time) - new Date(a.time));
 
   return (
     <motion.div
@@ -45,15 +37,15 @@ function AppContent() {
       animate="visible"
     >
       <AnimatePresence>
-        {filteredTodoList && filteredTodoList.length > 0 ? (
-          filteredTodoList.map((todo) => (
+        {sortedInvoiceList && sortedInvoiceList.length > 0 ? (
+          sortedInvoiceList.map((invoice) => (
             // <motion.div key={todo.id} variants={child}>
-            <TodoItem key={todo.id} todo={todo} />
+            <InvoiceItem key={invoice.id} invoice={invoice} />
             // </motion.div>
           ))
         ) : (
           <motion.p variants={child} className={styles.emptyText}>
-            No Todos
+            No Invoices
           </motion.p>
         )}
       </AnimatePresence>
@@ -61,4 +53,4 @@ function AppContent() {
   );
 }
 
-export default AppContent;
+export default InvoicesContent;

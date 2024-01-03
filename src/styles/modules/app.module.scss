@@ -1,9 +1,10 @@
 @import '../_mixins.scss';
 
 .app__wrapper {
-	max-width: 750px;
+	max-width: 1050px;
 	width: 100%;
 	margin: 0 auto;
+	padding-bottom: 50px;
 }
 .appHeader {
 	display: flex;

@@ -1,10 +1,6 @@
 # Project Title
 
-Task Manager
-
-## Demo link:
-
-Access my site at https://master--animated-halva-2a120f.netlify.app/
+Tax Manager
 
 ## Table of Content:
 
@@ -12,16 +8,15 @@ Access my site at https://master--animated-halva-2a120f.netlify.app/
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [Approach](#approach)
-- [Status](#status)
 - [Credits](#credits)
 
 ## About The App
 
-Task manager is an app that enables you to manage your tasks. All the pending tasks are shown in red and all the completed tasks are shown in green. All the tasks are sorted based on status completed first and creation date newest first. Tasks can be filtered based on the status pending and completed. New tasks can be added by clicking new task button. The status of the tasks can be changed by toggling the checkbox.
+Tax Manager is an app that enables you to manage your taxes. There are two Widgets in the App. A Summary Widget to track a summary of the customer’s financial status. Invoices Widget to manage the list of invoices the user has for his/her customers, which supports both editing existing invoices as well as creating new ones.
 
 ## Technologies
 
-I used React for the UI and Redux Toolkit for managing the state of the application. I used [framer-motion](#https://www.npmjs.com/package/framer-motion) for animation.
+I used React for the UI and Redux Toolkit for managing the state of the application. I used [framer-motion](#https://www.npmjs.com/package/framer-motion) for animation. I used [miragejs](#https://www.npmjs.com/package/miragejs) for mocking the API response.
 
 ## Setup
 
@@ -32,10 +27,6 @@ I used React for the UI and Redux Toolkit for managing the state of the applicat
 ## Approach
 
 I adopted SCSS for styling the app
-
-## Status
-
-Task Manager App is compeleted.
 
 ## Credits
 
